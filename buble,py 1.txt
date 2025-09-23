@@ -1,0 +1,65 @@
+"""
+Raed Al Kiswani
+PE1 3.5 — Bubble Sort (names)
+
+This program:
+1. asks for 5 names,
+2. sorts them with my own bubble sort (not Python's sort),
+3. reverses the sorted list,
+4. prints both results.
+"""
+
+def raed_sort(lst):
+    """Bubble sort (case-insensitive compare) but keep original text."""
+    arr = lst[:]            # I copy the list so I don't lose what user typed
+    n = len(arr)
+    swap_flag = True
+    while swap_flag:
+        swap_flag = False
+        for i in range(n - 1):
+            # compare lowercase so 'Bob' and 'bob' sort the same
+            if arr[i].casefold() > arr[i+1].casefold():
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                swap_flag = True
+        n -= 1  # last item is set after each pass
+    return arr
+
+def ask_names(count=5):
+    print("Please enter five names (first names are fine).")
+    result = []
+    k = 1
+    while len(result) < count:
+        name = input(f"Name {k}: ").strip()
+        if not name:
+            print("Oops, that was empty — try again.")
+            continue
+        result.append(name)
+        k += 1
+    return result
+
+def main():
+    # 1) get names
+    original = ask_names()
+
+    print("\nOriginal (as typed):")
+    print(original)
+
+    # 2) sort using my bubble sort
+    sorted_list = raed_sort(original)
+    print("\nSorted (lesson-style lowercase):")
+    print([n.lower() for n in sorted_list])
+    print("Sorted (original capitalization kept):")
+    print(sorted_list)
+
+    # 3) reverse and print descending
+    sorted_list.reverse()
+    print("\nReversed (descending):")
+    print([n.lower() for n in sorted_list])
+
+    # quick note to remind myself
+    print("\nNote: bubble sort compares neighbors and swaps.")
+    print("When a full pass has no swaps, it is sorted.")
+
+if __name__ == "__main__":
+    main()
+)
