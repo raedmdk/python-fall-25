@@ -1,0 +1,40 @@
+"""
+PE2 Module 4.6 – Calendar Module
+Author: Raed Al Kiswani
+Description:
+Personalized version — “Late Night Coding Edition”
+This program asks the user for their birth month and shows the calendar
+for that month in the current year.
+"""
+
+import calendar
+import datetime
+
+
+def main():
+    print("\n=== Raed's Late Night Coding Calendar Tool ===\n")
+
+    # Get the current year
+    current_year = datetime.datetime.now().year
+
+    # Ask for birth month
+    while True:
+        try:
+            month = int(input("Enter your birth month (1-12): "))
+            if 1 <= month <= 12:
+                break
+            else:
+                print("Please enter a number between 1 and 12.\n")
+        except ValueError:
+            print("Numbers only. Try again.\n")
+
+    print("\nHere is your birth month calendar:")
+    print("----------------------------------\n")
+
+    # Print the calendar for that month
+    print(calendar.month(current_year, month))
+
+    print("\nThanks for using the Late Night Coding version!\n")
+
+
+main()
